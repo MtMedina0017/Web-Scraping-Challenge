@@ -71,12 +71,6 @@ def scrape():
     print(mars_facts)
 
 
-    # In[ ]:
-
-
-
-
-
     # # Mars Hemispheres
 
     # In[ ]:
@@ -102,10 +96,6 @@ def scrape():
 
     return dict
 
-
-
-
-# In[ ]:
 
 
 
