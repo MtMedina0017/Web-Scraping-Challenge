@@ -73,15 +73,26 @@ def scrape():
 
     # # Mars Hemispheres
 
-    # In[ ]:
+    hemispheres_url = "https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars"
+    browser.visit(hemispheres_url)
+    html = browser.html
+    soup = BeautifulSoup(html, "html.parser")
+    mars_hemisphere = []
 
+    products = soup.find("div", class_ = "result-list" )
+    hemispheres = products.find_all("div", class_="item")
 
-    # hemisphere_image_urls = [
-    #     {"title": "Valles Marineris Hemisphere", "img_url": "..."},
-    #     {"title": "Cerberus Hemisphere", "img_url": "..."},
-    #     {"title": "Schiaparelli Hemisphere", "img_url": "..."},
-    #     {"title": "Syrtis Major Hemisphere", "img_url": "..."},
-    # ]
+    for hemisphere in hemispheres:
+        title = hemisphere.find("h3").text
+        title = title.replace("Enhanced","")
+        end_link = hemisphere.find("a")["href"]
+        image_link = "https://astrogeology.usgs.gov/" + end_link    
+        browser.visit(image_link)
+        html = browser.html
+        soup=BeautifulSoup(html, "html.parser")
+        downloads = soup.find("div", class_="downloads")
+        image_url = downloads.find("a")["href"]
+        mars_hemisphere.append({"title": title, "img_url": image_url})
 
 
 # In[ ]:
@@ -90,8 +101,8 @@ def scrape():
         "news_title": news_title,
         "news_paragraph": news_p,
         "featured_image": featured_image_url,
-        "mars_facts": mars_facts
-        # "hemisphere_images": hemisphere_image_urls
+        "mars_facts": mars_facts,
+        "mars_hemisphere": hemisphere_image_urls
     }
 
     return dict
