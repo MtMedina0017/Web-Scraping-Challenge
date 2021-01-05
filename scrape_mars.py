@@ -3,12 +3,12 @@
 
 # In[1]:
 
-def scrape():
+from bs4 import BeautifulSoup
+from splinter import Browser
+import requests
+import pandas as pd
 
-    from bs4 import BeautifulSoup
-    from splinter import Browser
-    import requests
-    import pandas as pd
+def scrape():
 
 
     # In[2]:
@@ -94,18 +94,18 @@ def scrape():
         image_url = downloads.find("a")["href"]
         mars_hemisphere.append({"title": title, "img_url": image_url})
 
-
+    browser.quit()
 # In[ ]:
-    dict = {
+    dictionary = {
 
         "news_title": news_title,
         "news_paragraph": news_p,
         "featured_image": featured_image_url,
         "mars_facts": mars_facts,
-        "mars_hemisphere": hemisphere_image_urls
+        "mars_hemisphere": mars_hemisphere
     }
 
-    return dict
+    return dictionary
 
 
 
