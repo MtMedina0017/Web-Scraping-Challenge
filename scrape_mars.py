@@ -67,7 +67,7 @@ def scrape():
     browser.visit(facts_url)
     mars_info = pd.read_html(facts_url)
     mars_info = pd.DataFrame(mars_info[0])
-    mars_facts = mars_info.to_html(header = False, index = False)
+    mars_facts = mars_info.to_html(header = True, index = False).replace ("<th>0</th>", "<th>Description</th>").replace ("<th>1</th>", "<th>Mars</th>")
     print(mars_facts)
 
 

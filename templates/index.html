@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Costa Rica Weather</title>
+  <title>Mars Scraping</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
@@ -16,26 +16,29 @@
       <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
     </div>
   <div class="row">
-    <h1>Latest Mars News</h1>
+    <h1 style="font-weight: bold">Mars News</h1>
     <h3>{{ mars.news_title }}</h3>
     <p>{{ mars.news_paragraph }}</p>
-    <div class="col-lg-8 col-xs-12">
-    <h1>Featured Mars Image</h1>
+    <div class="col-lg-7 col-xs-12">
+    <h1 style="font-weight: bold">Featured Mars Image</h1>
     <img src="{{ mars.featured_image }}" alt="Mars Image">
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-5">
      <h3>Mars Facts</h3>
-     <span>{{mars.mars_facts | safe}}</span>
+     <span class="facts-table" style="font-size: large;">{{mars.mars_facts | safe}}</span>
     </div>
 
   </div>
-  <div class="row">
+  
+  <div class="row" style="margin:35px; padding-left:15%; padding-right: 15%;">
+    <h3 style="text-align: center; font-weight: bold;">Mars Hemispheres</h3>
       {% for hemi in mars.mars_hemisphere %}
-    <div class="col-lg-6 col-md-12 col-xs-12">
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="{{hemi.img_url}}" alt="Hemisphere" style="border: 50px">
-            <div class="card-body">
-              <h5 class="card-title">{{hemi.title}}</h5>
+    <div class="col-lg-6 col-xs-12">
+      <div class="thumbnail">
+        <!-- <div class="card" style="padding:40px; border:1px solid rgb(145, 142, 142); margin-bottom: 30px; align-items: center"> -->
+            <img src="{{hemi.img_url}}" alt="Hemisphere" style="max-width: 98%; max-height: 98%">
+            <div class="caption">
+              <b><h3> {{hemi.title}}</h3></b>
 
             </div>
           </div>   
